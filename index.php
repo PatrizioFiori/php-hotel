@@ -12,7 +12,31 @@
 
 <body>
 
-<h1>Tabella degli Hotel </h1>
+<h1 class="mx-2">Tabella degli Hotel </h1>
+
+<br>
+<form action="" method="get">
+
+    <label>
+        <input type="checkbox" name="parking" value="1">
+        Mostra solo hotel con parcheggio
+    </label>
+    
+    <br>
+    
+    <label>
+        <input type="number" name="voto" value=value min="1" max="5">
+        Voto
+    </label>
+
+    <br>
+    
+    <button type="submit" class="btn btn-primary">Filtra</button>
+
+</form>
+<br>
+
+
 
 <table class="table table-striped table-bordered">
     <thead class="table-dark">
@@ -69,22 +93,23 @@
 
     ];
 
+    $filterParking = $_GET["parking"] ?? 0;
+    $filterVote = $_GET["voto"] ?? 0;
+
+
     foreach($hotels as $hotel){
+
+        if($filterParking == 1 && $hotel["parking"] == false){
+            continue;
+        }
+        if($hotel["vote"] < $filterVote){
+            continue;
+        }
+
         echo "<tr>";
         foreach($hotel as $key => $value){
-            if($key === "parking"){
+            echo "<td>" . ($key === "parking" ? ($value ? "Sì" : "No") : $value) . "</td>"; 
 
-            echo $value === true
-            ? "<td> presente </td>"
-            : "<td> non presente </td>" ;
-
-            } else {
-            echo "<td>" . $value . "</td>";
-
-            }
-        
-         
-            
         }
         
 
