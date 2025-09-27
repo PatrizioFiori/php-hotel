@@ -25,7 +25,7 @@
     <br>
     
     <label>
-        <input type="number" name="voto" value=value min="1" max="5">
+        <input type="number" name="voto" value="" min="1" max="5">
         Voto
     </label>
 
@@ -95,17 +95,15 @@
 
     $filterParking = $_GET["parking"] ?? 0;
     $filterVote = $_GET["voto"] ?? 0;
+    $found = false;
 
 
     foreach($hotels as $hotel){
 
-        if($filterParking == 1 && $hotel["parking"] == false){
-            continue;
-        }
-        if($hotel["vote"] < $filterVote){
-            continue;
-        }
+        if($filterParking == 1 && $hotel["parking"] == false) continue;
+        if($hotel["vote"] < $filterVote) continue;
 
+        $found = true;
         echo "<tr>";
         foreach($hotel as $key => $value){
             echo "<td>" . ($key === "parking" ? ($value ? "Sì" : "No") : $value) . "</td>"; 
@@ -115,6 +113,10 @@
 
         echo "</tr>";
 };
+
+if (!$found) {
+    echo "<tr><td colspan='5' class='text-center'>Nessun hotel trovato</td></tr>";
+}
 ?>
 
     </tbody>
