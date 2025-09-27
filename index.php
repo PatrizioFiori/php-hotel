@@ -12,6 +12,21 @@
 
 <body>
 
+<h1>Tabella degli Hotel </h1>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Nome</th>
+            <th>Descrizione</th>
+            <th>Parcheggio</th>
+            <th>Voto</th>
+            <th>Distanza dal centro (km)</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
     <?php
 
     $hotels = [
@@ -55,14 +70,30 @@
     ];
 
     foreach($hotels as $hotel){
+        echo "<tr>";
         foreach($hotel as $key => $value){
-            echo $key . ": " . $value . " - ";
+            if($key === "parking"){
+
+            echo $value === true
+            ? "<td> presente </td>"
+            : "<td> non presente </td>" ;
+
+            } else {
+            echo "<td>" . $value . "</td>";
+
+            }
+        
+         
+            
         }
         
 
-        echo "<br>";
+        echo "</tr>";
 };
 ?>
+
+    </tbody>
+</table>
 
 </body>
 
