@@ -17,23 +17,24 @@
 <br>
 <form action="" method="get">
 
+<div class="d-flex mb-3">
     <label>
         <input type="checkbox" name="parking" value="1">
         Mostra solo hotel con parcheggio
     </label>
     
-    <br>
     
-    <label>
+    <label class="mx-5">
         <input type="number" name="voto" value="" min="1" max="5">
         Voto
     </label>
-
-    <br>
+</div>
     
-    <button type="submit" class="btn btn-primary">Filtra</button>
+    <button type="submit" class="btn btn-primary">Filtra gli Hotel</button>
 
 </form>
+
+
 <br>
 
 
